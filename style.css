@@ -1,0 +1,825 @@
+/* ===== CONFIGURAÇÃO GERAL ===== */
+* {
+    /* seleciona todos os elementos da página */
+    box-sizing: border-box;
+    /* padding e borda entram na largura, o elemento não estoura */
+}
+
+body {
+    /* corpo da página */
+    margin: 0;
+    /* tira a margem padrão do navegador */
+    padding: 0;
+    /* tira o espaçamento interno padrão */
+    background-color: rgba(169, 214, 218, 0.849);
+    /* cor de fundo azul-água (cor principal) */
+    color: black;
+    /* cor do texto */
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    /* fonte com opções reserva */
+}
+
+img {
+    /* todas as imagens */
+    max-width: 100%;
+    /* a imagem nunca passa da largura da tela */
+    height: auto;
+    /* a altura acompanha para não distorcer */
+}
+
+/* ===== GRID DA HOME (mobile primeiro: 1 coluna) ===== */
+body.pagina-grid {
+    /* body só da página index */
+    display: grid;
+    /* usa grid para organizar as áreas */
+    grid-template-columns: minmax(0, 1fr);
+    /* 1 coluna que não estoura a tela */
+    grid-template-rows: auto auto 1fr auto;
+    /* header, lateral, main e footer */
+    grid-template-areas:
+        /* desenho da página no celular */
+        "header"
+        /* cabeçalho em cima */
+        "lateral"
+        /* barra lateral vira faixa embaixo do cabeçalho */
+        "main"
+        /* conteúdo principal */
+        "footer";
+    /* rodapé por último */
+    min-height: 100vh;
+    /* a página ocupa no mínimo a altura da tela */
+}
+
+main {
+    /* conteúdo principal da home */
+    grid-area: main;
+    /* coloca o main na área "main" do grid */
+}
+
+/* ===== CONTAINER DA PÁGINA DE DETALHE ===== */
+.wrap {
+    /* caixa que segura a página detalhe */
+    width: 90%;
+    /* ocupa 90% da largura da tela */
+    max-width: 1000px;
+    /* mas nunca passa de 1000px */
+    margin: 0 auto;
+    /* centraliza na tela */
+}
+
+/* ===== CABEÇALHO DA DETALHE ===== */
+.masthead {
+    /* cabeçalho preto da detalhe */
+    display: flex;
+    /* coloca nome e menu lado a lado */
+    justify-content: space-between;
+    /* nome na esquerda e menu na direita */
+    align-items: center;
+    /* alinha os dois no meio da altura */
+    flex-wrap: wrap;
+    /* se não couber, o menu desce para a linha de baixo */
+    gap: 8px 24px;
+    /* espaço entre os itens (vertical e horizontal) */
+    background-color: #000000;
+    /* fundo preto */
+    padding: 15px 25px;
+    /* espaço interno do cabeçalho */
+}
+
+.identidade {
+    /* bloco com título e subtítulo */
+    display: flex;
+    /* usa flex */
+    flex-direction: column;
+    /* título em cima e subtítulo embaixo */
+}
+
+.masthead h1 {
+    /* título do museu */
+    margin: 0;
+    /* tira a margem */
+    color: white;
+    /* texto branco */
+    font-size: clamp(1.375rem, 1.1rem + 1.5vw, 2rem);
+    /* título fluido: ~23px em 360px e 32px em 1280px */
+}
+
+.subtitle {
+    /* frase embaixo do título */
+    margin: 5px 0 0;
+    /* pequeno espaço em cima */
+    color: white;
+    /* texto branco */
+    font-size: 13px;
+    /* letra menor */
+}
+
+/* ===== MENU PRINCIPAL DA DETALHE ===== */
+.primary ul {
+    /* lista do menu */
+    display: flex;
+    /* itens um do lado do outro */
+    flex-wrap: wrap;
+    /* itens quebram de linha em vez de espremer */
+    gap: 5px;
+    /* espaço entre os itens */
+    list-style: none;
+    /* tira as bolinhas */
+    margin: 0;
+    /* tira a margem */
+    padding: 0;
+    /* tira o espaçamento interno */
+}
+
+.primary a {
+    /* links do menu */
+    display: block;
+    /* link vira bloco para ter área de clique maior */
+    padding: 10px 12px;
+    /* espaço em volta do texto */
+    color: white;
+    /* texto branco */
+    text-decoration: none;
+    /* tira o sublinhado */
+}
+
+.primary a:hover {
+    /* quando passa o mouse */
+    text-decoration: underline;
+    /* aparece o sublinhado */
+}
+
+.primary a:focus {
+    /* quando o link recebe foco pelo teclado */
+    outline: 2px solid white;
+    /* contorno branco visível */
+    outline-offset: 3px;
+    /* afasta o contorno do texto */
+}
+
+.primary a.active {
+    /* link da página atual */
+    border-bottom: 2px solid #ffffff;
+    /* linha branca embaixo */
+    padding-bottom: 6px;
+    /* espaço entre texto e linha */
+}
+
+/* ===== MENU INTERNO DA DETALHE (âncoras + voltar) ===== */
+.subnav {
+    /* faixa cinza com os links da página */
+    margin-top: 15px;
+    /* espaço em cima */
+    padding: 10px;
+    /* espaço interno */
+    background-color: #9ea3aae5;
+    /* mesmo cinza da barra lateral da home */
+    border-radius: 5px;
+    /* cantos arredondados */
+}
+
+.subnav ul {
+    /* lista do menu interno */
+    display: flex;
+    /* itens lado a lado */
+    flex-wrap: wrap;
+    /* quebra de linha quando não cabe */
+    justify-content: center;
+    /* centraliza os itens */
+    gap: 4px 16px;
+    /* espaço entre os itens */
+    list-style: none;
+    /* tira as bolinhas */
+    margin: 0;
+    /* tira a margem */
+    padding: 0;
+    /* tira o espaçamento interno */
+}
+
+.subnav a {
+    /* links do menu interno */
+    display: block;
+    /* área de clique maior */
+    padding: 6px 8px;
+    /* espaço em volta do texto */
+    color: #333;
+    /* cinza escuro */
+    text-decoration: none;
+    /* sem sublinhado */
+}
+
+.subnav a:hover {
+    /* passar o mouse */
+    text-decoration: underline;
+    /* sublinha */
+}
+
+.subnav a.voltar {
+    /* link "← Locais" */
+    font-weight: bold;
+    /* destaque em negrito */
+}
+
+.subnav a:focus {
+    /* foco pelo teclado */
+    outline: 2px solid #000000;
+    /* contorno preto */
+    outline-offset: 2px;
+    /* afasta o contorno */
+}
+
+/* ===== CARTÕES DA DETALHE ===== */
+.card {
+    /* caixa branca de cada seção */
+    background-color: white;
+    /* fundo branco */
+    margin-top: 15px;
+    /* espaço entre os cartões */
+    padding: 20px;
+    /* espaço interno */
+    border: 1px solid #cfb9b9;
+    /* borda fininha */
+    border-radius: 8px;
+    /* cantos arredondados */
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.10);
+    /* sombra leve */
+}
+
+.card h2 {
+    /* título de cada cartão */
+    margin-top: 0;
+    /* tira a margem de cima */
+    color: #000000;
+    /* preto */
+    font-size: 20px;
+    /* tamanho do título */
+}
+
+/* ===== IMAGEM DA DETALHE ===== */
+figure {
+    /* caixa da imagem com legenda */
+    margin: 20px auto 0;
+    /* espaço em cima e centralizada */
+    text-align: center;
+    /* centraliza o conteúdo */
+}
+
+.park-illustration {
+    /* foto do museu */
+    display: block;
+    /* vira bloco para poder centralizar */
+    width: min(100%, 600px);
+    /* ocupa a largura do cartão, até 600px */
+    max-width: 100%;
+    /* nunca passa da tela */
+    height: auto;
+    /* a altura acompanha a largura */
+    aspect-ratio: 3 / 2;
+    /* caixa de recorte com proporção fixa */
+    object-fit: cover;
+    /* recorta a foto sem distorcer */
+    margin: 0 auto;
+    /* centraliza */
+    border-radius: 5px;
+    /* cantos arredondados */
+}
+
+figcaption {
+    /* legenda da foto */
+    margin-top: 8px;
+    /* espaço em cima */
+    color: #555;
+    /* cinza */
+    font-size: 12px;
+    /* letra pequena */
+}
+
+/* ===== TABELA (mobile: cada linha vira um bloco) ===== */
+table {
+    /* tabela de informações */
+    width: 100%;
+    /* ocupa toda a largura do cartão */
+    border-collapse: collapse;
+    /* junta as bordas das células */
+    margin-top: 10px;
+    /* espaço em cima */
+    display: block;
+    /* no celular a tabela vira bloco comum */
+}
+
+tbody,
+/* corpo da tabela */
+tr,
+/* linhas */
+td {
+    /* células */
+    display: block;
+    /* cada célula fica embaixo da outra, sem rolagem lateral */
+}
+
+thead {
+    /* cabeçalho da tabela */
+    display: none;
+    /* no celular o cabeçalho some, pois cada linha já vira um bloco */
+}
+
+th {
+    /* células do cabeçalho */
+    padding: 10px;
+    /* espaço interno */
+    background-color: #000000;
+    /* fundo preto */
+    color: white;
+    /* texto branco */
+    text-align: left;
+    /* alinha à esquerda */
+}
+
+tr {
+    /* cada linha no celular */
+    padding: 8px 0;
+    /* espaço em cima e embaixo */
+    border-bottom: 1px solid #ddd;
+    /* linha separando as linhas */
+}
+
+td {
+    /* cada célula no celular */
+    padding: 4px 10px;
+    /* espaço interno menor */
+    border-bottom: 0;
+    /* sem linha, quem separa é o tr */
+}
+
+td:first-child {
+    /* primeira célula de cada linha */
+    font-weight: bold;
+    /* negrito, funciona como título do bloco */
+}
+
+tbody tr:nth-child(even) {
+    /* linhas pares */
+    background-color: #f2f2f2;
+    /* fundo cinza claro */
+}
+
+/* ===== LISTAS E LINKS DA DETALHE ===== */
+.amenities,
+/* lista de atrações */
+.event-details {
+    /* lista de detalhes do evento */
+    padding-left: 20px;
+    /* recuo da lista */
+    line-height: 1.8;
+    /* espaço entre as linhas */
+}
+
+.link-list {
+    /* lista de links do contato */
+    padding-left: 20px;
+    /* recuo da lista */
+    line-height: 2;
+    /* espaço entre as linhas */
+}
+
+.link-list a {
+    /* links do contato */
+    color: #000000;
+    /* preto */
+    text-decoration: underline;
+    /* sublinhado */
+}
+
+/* ===== RODAPÉ DA DETALHE ===== */
+.site-footer {
+    /* rodapé da detalhe */
+    margin-top: 20px;
+    /* espaço em cima */
+    padding: 25px 0;
+    /* espaço interno */
+    border-top: 1px solid #ccc;
+    /* linha em cima */
+    text-align: center;
+    /* texto centralizado */
+    color: #555;
+    /* cinza */
+}
+
+.menu-vertical {
+    /* menu do rodapé */
+    display: flex;
+    /* usa flex */
+    flex-direction: column;
+    /* links um embaixo do outro */
+    gap: 5px;
+    /* espaço entre os links */
+    align-items: center;
+    /* centraliza os links */
+    margin-bottom: 20px;
+    /* espaço embaixo */
+}
+
+.menu-vertical a {
+    /* links do rodapé */
+    display: block;
+    /* área de clique maior */
+    padding: 8px 15px;
+    /* espaço em volta do texto */
+    color: #000000;
+    /* preto */
+    text-decoration: underline;
+    /* sublinhado */
+}
+
+.menu-vertical a:focus {
+    /* foco pelo teclado */
+    outline: 2px solid #000000;
+    /* contorno preto */
+    outline-offset: 3px;
+    /* afasta o contorno */
+}
+
+.site-footer>p:last-child a {
+    /* link "Voltar à página inicial" */
+    display: inline-block;
+    /* permite usar padding */
+    padding: 8px 12px;
+    /* espaço em volta do texto */
+    color: #000000;
+    /* preto */
+    text-decoration: underline;
+    /* sublinhado */
+}
+
+/* ===== CABEÇALHO DA HOME ===== */
+.header {
+    /* cabeçalho preto da home */
+    grid-area: header;
+    /* área "header" do grid */
+    display: flex;
+    /* marca e menu lado a lado */
+    justify-content: space-between;
+    /* marca na esquerda, menu na direita */
+    align-items: center;
+    /* alinha no meio */
+    flex-wrap: wrap;
+    /* se não couber, o menu desce */
+    gap: 12px 24px;
+    /* espaço entre marca e menu */
+    padding: 16px 5%;
+    /* espaço interno */
+    background-color: black;
+    /* fundo preto */
+    color: rgba(255, 255, 255, 0.753);
+    /* texto branco meio transparente */
+}
+
+.header-brand {
+    /* nome do guia */
+    display: flex;
+    /* usa flex */
+    flex-direction: column;
+    /* um texto embaixo do outro */
+}
+
+.brand-title {
+    /* textos da marca */
+    font-weight: bold;
+    /* negrito */
+}
+
+.nav ul {
+    /* lista do menu da home */
+    display: flex;
+    /* itens lado a lado */
+    flex-wrap: wrap;
+    /* quebram de linha se faltar espaço */
+    gap: 8px 24px;
+    /* espaço entre os itens */
+    list-style: none;
+    /* sem bolinhas */
+    margin: 0;
+    /* sem margem */
+    padding: 0;
+    /* sem espaçamento interno */
+}
+
+.nav a {
+    /* links do menu da home */
+    color: white;
+    /* branco */
+    text-decoration: none;
+    /* sem sublinhado */
+}
+
+.nav a.active {
+    /* página atual */
+    border-bottom: 2px solid #ffffff;
+    /* linha branca embaixo */
+    padding-bottom: 4px;
+    /* espaço entre texto e linha */
+}
+
+/* ===== BARRA LATERAL DA HOME (mobile: faixa horizontal) ===== */
+.lateral {
+    /* barra lateral */
+    grid-area: lateral;
+    /* área "lateral" do grid */
+    background-color: #9ea3aae5;
+    /* cinza */
+    padding: 20px;
+    /* espaço interno */
+}
+
+.lateral ul {
+    /* lista da lateral */
+    list-style: none;
+    /* sem bolinhas */
+    margin: 0;
+    /* sem margem */
+    padding: 0;
+    /* sem espaçamento interno */
+    display: flex;
+    /* no celular vira uma faixa horizontal */
+    flex-wrap: wrap;
+    /* quebra de linha se não couber */
+    gap: 0 20px;
+    /* espaço entre os links */
+}
+
+.lateral li {
+    /* cada item da lateral */
+    margin-bottom: 10px;
+    /* espaço embaixo */
+}
+
+.lateral a {
+    /* links da lateral */
+    color: #333;
+    /* cinza escuro */
+    text-decoration: none;
+    /* sem sublinhado */
+}
+
+.lateral a:hover {
+    /* passar o mouse */
+    text-decoration: underline;
+    /* sublinha */
+}
+
+/* ===== DESTAQUE (HERO) DA HOME ===== */
+.hero {
+    /* bloco do título grande */
+    display: flex;
+    /* usa flex */
+    flex-direction: column;
+    /* itens um embaixo do outro */
+    justify-content: center;
+    /* centraliza na vertical */
+    align-items: center;
+    /* centraliza na horizontal */
+    min-height: 45vh;
+    /* altura mínima de 45% da tela */
+    text-align: center;
+    /* texto centralizado */
+    padding: 20px;
+    /* espaço interno */
+}
+
+.hero h1 {
+    /* título da home */
+    font-size: clamp(1.75rem, 1.2rem + 2.5vw, 3rem);
+    /* título fluido: ~28px em 360px e 48px em 1280px */
+}
+
+/* ===== CARDS DA HOME (quantidade de colunas: automático) ===== */
+.cards {
+    /* área que segura os cards */
+    display: grid;
+    /* usa grid */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    /* o navegador decide quantas colunas cabem, cada uma com no mínimo 250px */
+    gap: 20px;
+    /* espaço entre os cards */
+    padding: 40px 5%;
+    /* espaço em volta da área */
+}
+
+.cards .card {
+    /* card dentro da grade da home */
+    margin-top: 0;
+    /* tira a margem, quem espaça é o gap */
+}
+
+.card-conteudo {
+    /* link que envolve o card inteiro */
+    display: block;
+    /* ocupa o card todo para clicar em qualquer lugar */
+    height: 100%;
+    /* mesma altura do card */
+    color: black;
+    /* texto preto, igual ao resto do card */
+    text-decoration: none;
+    /* sem sublinhado */
+}
+
+.card-conteudo .ver-mais {
+    /* texto "Ver detalhes" */
+    color: #0000ee;
+    /* azul de link */
+    text-decoration: underline;
+    /* sublinhado */
+}
+
+.card-conteudo:focus {
+    /* foco pelo teclado */
+    outline: 2px solid #000000;
+    /* contorno preto */
+    outline-offset: 4px;
+    /* afasta o contorno */
+}
+
+/* ===== PRÓXIMOS EVENTOS DA HOME (quantidade de colunas: automático) ===== */
+.agenda {
+    /* seção de eventos */
+    padding: 0 5% 40px;
+    /* espaço dos lados e embaixo */
+}
+
+.agenda h2 {
+    /* título da seção */
+    margin: 0 0 16px;
+    /* espaço embaixo do título */
+    font-size: 20px;
+    /* tamanho do título */
+}
+
+.agenda-lista {
+    /* lista de eventos */
+    display: grid;
+    /* usa grid */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    /* colunas automáticas, mínimo 250px */
+    gap: 16px;
+    /* espaço entre os eventos */
+    list-style: none;
+    /* sem bolinhas */
+    margin: 0;
+    /* sem margem */
+    padding: 0;
+    /* sem espaçamento interno */
+}
+
+.evento {
+    /* cada evento */
+    display: flex;
+    /* usa flex */
+    flex-direction: column;
+    /* dia em cima, descrição embaixo */
+    gap: 4px;
+    /* espaço entre os textos */
+    background-color: white;
+    /* fundo branco */
+    border: 1px solid #cfb9b9;
+    /* borda fininha */
+    border-left: 4px solid #000000;
+    /* borda preta grossa na esquerda */
+    border-radius: 8px;
+    /* cantos arredondados */
+    padding: 14px 16px;
+    /* espaço interno */
+}
+
+/* ===== RODAPÉ DA HOME ===== */
+.footer {
+    /* rodapé da home */
+    grid-area: footer;
+    /* área "footer" do grid */
+    background-color: #000000;
+    /* fundo preto */
+    color: white;
+    /* texto branco */
+    text-align: center;
+    /* texto centralizado */
+    padding: 16px;
+    /* espaço interno */
+}
+
+/* ===== USUÁRIO: ÁREA DE TOQUE (~44px) E FOCO VISÍVEL ===== */
+.nav a,
+.lateral a,
+.subnav a,
+.primary a,
+.link-list a,
+.menu-vertical a,
+.site-footer>p:last-child a,
+.cards .card>a:not(.card-conteudo) {
+    /* links e botões de navegação; o :not() deixa de fora o link que envolve o card inteiro do Museu */
+    display: inline-flex;
+    /* permite altura mínima mantendo o texto no meio */
+    align-items: center;
+    /* centraliza o texto na vertical */
+    min-height: 44px;
+    /* área de toque mínima */
+    padding-inline: 12px;
+    /* respiro nas laterais */
+}
+
+.lateral li {
+    margin-bottom: 0;
+    /* a altura agora vem do link */
+}
+
+.card-conteudo .ver-mais {
+    /* "Ver detalhes" dentro do card clicável */
+    display: inline-block;
+    padding: 12px 0;
+}
+
+.cards .card>a:not(.card-conteudo) {
+    padding-inline: 0;
+    /* alinha o "Ver detalhes" com o texto do card */
+}
+
+a:focus-visible {
+    /* foco para quem navega por teclado */
+    outline: 3px solid #1a73e8;
+    outline-offset: 3px;
+}
+
+.header a:focus-visible,
+.masthead a:focus-visible {
+    /* nos fundos pretos, o contorno fica branco */
+    outline-color: #ffffff;
+}
+
+/* ===== BREAKPOINT ÚNICO: 45em (720px) - MUDA O DESENHO ===== */
+@media (min-width: 45em) {
+    /* vale só quando a tela tem 720px ou mais */
+
+    body.pagina-grid {
+        /* home no computador */
+        grid-template-columns: 220px minmax(0, 1fr);
+        /* lateral de 220px e o resto para o conteúdo */
+        grid-template-rows: auto 1fr auto;
+        /* header, meio e footer */
+        grid-template-areas:
+            /* novo desenho da página */
+            "header header"
+            /* cabeçalho ocupa as duas colunas */
+            "lateral main"
+            /* lateral à esquerda, conteúdo à direita */
+            "footer footer";
+        /* rodapé ocupa as duas colunas */
+    }
+
+    .lateral ul {
+        /* lista da lateral no computador */
+        display: block;
+        /* links um embaixo do outro (coluna) */
+    }
+
+    table {
+        /* tabela no computador */
+        display: table;
+        /* volta a ser tabela de verdade */
+    }
+
+    thead {
+        /* cabeçalho da tabela no computador */
+        display: table-header-group;
+        /* o cabeçalho volta a aparecer */
+    }
+
+    tbody {
+        /* corpo da tabela no computador */
+        display: table-row-group;
+        /* volta ao normal */
+    }
+
+    tr {
+        /* linhas no computador */
+        display: table-row;
+        /* volta a ser linha */
+        padding: 0;
+        /* tira o espaço do celular */
+        border-bottom: 0;
+        /* tira a linha do celular */
+    }
+
+    td {
+        /* células no computador */
+        display: table-cell;
+        /* volta a ser célula (3 colunas) */
+        padding: 10px;
+        /* espaço interno */
+        border-bottom: 1px solid #ddd;
+        /* linha embaixo de cada célula */
+    }
+
+    td:first-child {
+        /* primeira célula no computador */
+        font-weight: normal;
+        /* tira o negrito do celular */
+    }
+}
